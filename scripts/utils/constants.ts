@@ -1,4 +1,4 @@
-const LIST_IDS = Array(1)
+const LIST_IDS = Array(10)
   .fill(null)
   .map((_, index) => index);
 

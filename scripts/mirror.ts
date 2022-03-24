@@ -15,12 +15,16 @@ async function main() {
   const mainOwners = await getOwnersForIds(ethereumMulticall, LIST_IDS, MY_NFT_ADDRESS);
   const mirrorOwners = await getOwnersForIds(polygonMulticall, LIST_IDS, MY_MIRROR_ADDRESS);
 
-  console.log(mainOwners);
-  console.log(mirrorOwners);
+  // console.log(mainOwners);
+  // console.log(mirrorOwners);
 
   const addressesToUpdate: string[] = [];
 
   Object.keys(mainOwners).forEach((address) => {
+    if (address == "undefined") {
+      return;
+    }
+
     const mainTokens = mainOwners[address] || [];
     const mirrorTokens = mirrorOwners[address] || [];
 
@@ -45,6 +49,10 @@ async function main() {
   });
 
   Object.keys(mirrorOwners).forEach((address) => {
+    if (address == "undefined") {
+      return;
+    }
+
     const mainTokens = mainOwners[address] || [];
     const mirrorTokens = mirrorOwners[address] || [];
 
